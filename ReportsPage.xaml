@@ -1,0 +1,25 @@
+﻿<Window x:Class="TalentedYouthProgect.ReportsPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TalentedYouthProgect" xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+        mc:Ignorable="d"
+        Title="Reports" Height="450" Width="800" Icon="/Ico.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+        <WindowsFormsHost Grid.ColumnSpan="2" Margin="0,0,148,0">
+            <rv:ReportViewer x:Name="reportView"/>
+        </WindowsFormsHost>
+        <Label Grid.Column="1" Margin="162,9,0,0" Content="C" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <!--<TextBox x:Name="YearFromReport" Grid.Column="1" Margin="204,368,0,0" Text="2019" HorizontalAlignment="Left" Width="35" Height="19" VerticalAlignment="Top"/>-->
+        <Label Grid.Column="1" Margin="157,38,0,0" Content="ПО" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <!--<TextBox x:Name="YearToReport" Grid.Column="1" Margin="0,368,10,0" Text="2023" Height="19" VerticalAlignment="Top" HorizontalAlignment="Right" Width="35"/>-->
+        <Button x:Name="buttonReport" Grid.Column="1" Content="Составить" HorizontalAlignment="Right" Margin="0,69,10,0" VerticalAlignment="Top" Width="128" Click="buttonReport_Click" Height="30"/>
+        <ComboBox x:Name="y1" Grid.Column="1" HorizontalAlignment="Right" Margin="0,11,10,0" VerticalAlignment="Top" Width="106"/>
+        <ComboBox x:Name="y2" Grid.Column="1" HorizontalAlignment="Right" Margin="0,38,10,0" VerticalAlignment="Top" Width="106"/>
+    </Grid>
+</Window>

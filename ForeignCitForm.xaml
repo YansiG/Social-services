@@ -1,0 +1,20 @@
+﻿<Window x:Class="TalentedYouthProgect.ForeignCitForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TalentedYouthProgect"
+        mc:Ignorable="d"
+        Title="ForeignCitizen" Height="430" Width="425" Icon="/Ico.png">
+    <Grid>
+        <Label Content="Гражданство" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="12,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="390"/>
+        <Label Content="Срок регистрации или вида на жительство" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Margin="10,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="390"/>
+        <Label Content="Данные о родителях" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Margin="10,144,0,0" TextWrapping="Wrap" AcceptsReturn="True" Text="" VerticalAlignment="Top" Width="390" Height="73"/>
+        <Button Content="Закрыть" HorizontalAlignment="Left" Margin="300,331,0,0" VerticalAlignment="Top" Height="40" Width="100" Click="Button_Click"/>
+        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="12,331,0,0" VerticalAlignment="Top" Height="40" Width="100" Click="Button_Click_1"/>
+
+    </Grid>
+</Window>

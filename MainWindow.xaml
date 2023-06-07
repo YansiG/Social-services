@@ -1,0 +1,107 @@
+﻿<Window x:Class="TalentedYouthProgect.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TalentedYouthProgect" xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+        mc:Ignorable="d"
+        Title="Social services" Height="750" Width="1215" Icon="/MainIco.png">
+    <Grid>
+        <Grid>
+            <Button x:Name="AddNewStudent" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="AddNewStudent_Click" Foreground="{x:Null}" BorderBrush="{x:Null}">
+                <Image Source="/image/addico.png" Stretch="Fill"/>
+            </Button>
+            <Button x:Name="DeleteStudent" HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="DeleteStudent_Click" Foreground="{x:Null}" BorderBrush="{x:Null}">
+                <Image Source="/image/deleteico.png"/>
+            </Button>
+            <Button x:Name="button1" HorizontalAlignment="Left" Margin="80,10,0,0" VerticalAlignment="Top" Height="30" Width="30" BorderBrush="Black" Foreground="{x:Null}" Click="button1_Click_1">
+                <Image Source="/image/reicon.png" Stretch="Uniform"/>
+            </Button>
+            <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="115,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="825" Height="30"/>
+            <Button x:Name="moreinfo" HorizontalAlignment="Left" Margin="980,10,0,0" VerticalAlignment="Top" Height="30" Width="30" BorderBrush="Black" Foreground="{x:Null}" Click="moreinfo_Click_1">
+                <Image Source="/image/infoico.png"/>
+            </Button>
+            <Button x:Name="search" HorizontalAlignment="Left" Margin="945,10,0,0" VerticalAlignment="Top" Height="30" Width="30" BorderBrush="Black" Foreground="{x:Null}" Click="search_Click_1">
+                <Image Source="/image/searchico.png" Stretch="Uniform" Opacity="1"/>
+            </Button>
+            <Button x:Name="makeReport" Content="Подготовить отчёт" HorizontalAlignment="Left" Margin="1015,10,0,0" VerticalAlignment="Top" Height="30" Width="170" Click="makeReport_Click"/>
+            <TabControl Grid.Column="0" Margin="0,45,0,0">
+                <TabItem Header="Учащиеся">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="92*"/>
+                        </Grid.ColumnDefinitions>
+                        <ListView x:Name="listViewStudent" Grid.ColumnSpan="2" Margin="0,0,257,0">
+                            <ListView.Resources>
+
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontFamily" Value="Arial" />
+                                    <Setter Property="FontSize" Value="12" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="id" Width="0" DisplayMemberBinding="{Binding [0]}" />
+                                    <GridViewColumn Header="ФИО" DisplayMemberBinding="{Binding [1]}" />
+                                    <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding [2]}" />
+                                    <GridViewColumn Header="Дата поступления" DisplayMemberBinding="{Binding [3]}" />
+                                    <GridViewColumn Header="Группа" DisplayMemberBinding="{Binding [4]}" />
+                                    <GridViewColumn Header="Куратор" DisplayMemberBinding="{Binding [5]}" />
+                                    <GridViewColumn Header="Адрес проживания" DisplayMemberBinding="{Binding [6]}" />
+                                    <GridViewColumn Header="Адрес проживания" DisplayMemberBinding="{Binding [7]}" />
+                                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding [8]}" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <ListBox x:Name="checkedListBoxCriteria" SelectionMode="Multiple" TabIndex="10" Grid.Column="1" HorizontalAlignment="Right" Width="242" Height="150" VerticalAlignment="Top" Margin="0,0,10,0" SelectionChanged="checkedListBoxCriteriaExcel_SelectionChanged">
+                            <ListBox.Items>
+                                <ListBoxItem x:Name="sopI">СОП</ListBoxItem>
+                                <ListBoxItem x:Name="iprI">ИПР</ListBoxItem>
+                                <ListBoxItem x:Name="orphanI">Дети - сироты</ListBoxItem>
+                                <ListBoxItem x:Name="disabledI">Дети - инвалиды</ListBoxItem>
+                                <ListBoxItem x:Name="investigationI">Социальное расследование</ListBoxItem>
+                                <ListBoxItem x:Name="foreignI">Иностранные граждане</ListBoxItem>
+                            </ListBox.Items>
+                        </ListBox>
+                        <ComboBox x:Name="groupBox"  HorizontalAlignment="Right" Margin="0,186,10,0" VerticalAlignment="Top" Width="242" Grid.Column="1" SelectionChanged="groupBox_SelectionChanged" IsEditable="True"/>
+                        <ComboBox x:Name="curatorBox"  HorizontalAlignment="Right" Margin="0,244,10,0" VerticalAlignment="Top" Width="242" Grid.Column="1" SelectionChanged="curatorBox_SelectionChanged" IsEditable="True"/>
+                        <Label Grid.Column="1" Content="Группа" HorizontalAlignment="Right" Margin="944,155,0,0" VerticalAlignment="Top" Width="242"/>
+                        <Label Grid.Column="1" Content="Куратор" HorizontalAlignment="Right" Margin="944,213,0,0" VerticalAlignment="Top" Width="242"/>
+                        <!--<TextBlock Text="Привет" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="25,118,0,0" />-->
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Кураторы">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="200" />
+                        </Grid.ColumnDefinitions>
+                        <ListView x:Name="listViewSecondTab" Grid.ColumnSpan="2">
+                            <ListView.Resources>
+
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontFamily" Value="Arial" />
+                                    <Setter Property="FontSize" Value="12" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="id" Width="0" DisplayMemberBinding="{Binding [0]}" />
+                                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding [1]}" />
+                                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding [2]}" />
+                                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding [3]}" />
+                                    <GridViewColumn Header="Группа" DisplayMemberBinding="{Binding [4]}" />
+
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+
+    </Grid>
+</Window>
