@@ -50,7 +50,7 @@
                                     <GridViewColumn Header="Группа" DisplayMemberBinding="{Binding [4]}" />
                                     <GridViewColumn Header="Куратор" DisplayMemberBinding="{Binding [5]}" />
                                     <GridViewColumn Header="Адрес проживания" DisplayMemberBinding="{Binding [6]}" />
-                                    <GridViewColumn Header="Адрес проживания" DisplayMemberBinding="{Binding [7]}" />
+                                    <GridViewColumn Header="Адрес регистрации" DisplayMemberBinding="{Binding [7]}" />
                                     <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding [8]}" />
                                 </GridView>
                             </ListView.View>
