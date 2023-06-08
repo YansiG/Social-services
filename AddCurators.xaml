@@ -15,9 +15,6 @@
 
         <Label Content="Отчество" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox3" HorizontalAlignment="Center" Margin="0,147,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="390"/>
-
-        <Label Content="Группа" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox4" HorizontalAlignment="Center" Margin="0,201,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="390"/>
         <Button Content="Закрыть" HorizontalAlignment="Left" Margin="291,331,0,0" VerticalAlignment="Top" Height="40" Width="100" Click="Button_Click"/>
         <Button Content="Сохранить" HorizontalAlignment="Left" Margin="12,331,0,0" VerticalAlignment="Top" Height="40" Width="100" Click="Button_Click_1"/>
     </Grid>

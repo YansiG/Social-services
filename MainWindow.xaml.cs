@@ -294,7 +294,7 @@ namespace TalentedYouthProgect
 
         private void checkedListBoxCriteriaExcel_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (checkedListBoxCriteria.SelectedItems.Contains(iprI) && !categories.Contains("ipr_ID")) { categories.Add("ipr_ID"); } else if(!checkedListBoxCriteria.SelectedItems.Contains(iprI)) {categories.Remove("ipr_ID"); }
+            if (checkedListBoxCriteria.SelectedItems.Contains(iprI) && !categories.Contains("ipr_ID")) { categories.Add("ipr_ID"); } else if (!checkedListBoxCriteria.SelectedItems.Contains(iprI)) { categories.Remove("ipr_ID"); }
             if (checkedListBoxCriteria.SelectedItems.Contains(sopI) && !categories.Contains("sop_ID")) { categories.Add("sop_ID"); } else if (!checkedListBoxCriteria.SelectedItems.Contains(sopI)) { categories.Remove("sop_ID"); }
             if (checkedListBoxCriteria.SelectedItems.Contains(orphanI) && !categories.Contains("orphan_ID")) { categories.Add("orphan_ID"); } else if (!checkedListBoxCriteria.SelectedItems.Contains(orphanI)) { categories.Remove("orphan_ID"); }
             if (checkedListBoxCriteria.SelectedItems.Contains(disabledI) && !categories.Contains("disabled_ID")) { categories.Add("disabled_ID"); } else if (!checkedListBoxCriteria.SelectedItems.Contains(disabledI)) { categories.Remove("disabled_ID"); }
@@ -382,7 +382,7 @@ namespace TalentedYouthProgect
                         while (reader.Read())
                         {
                             resultCur.Clear();
-                            for (int i = 0; i < 5; i++)
+                            for (int i = 0; i < 4; i++)
                             {
                                 resultCur.Add(reader.GetString(i));
                             }

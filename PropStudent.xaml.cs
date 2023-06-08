@@ -37,7 +37,7 @@ namespace TalentedYouthProgect
                         {
                             //resultCur.Clear();
                             string name = "";
-                            for (int i = 1; i < 3; i++)
+                            for (int i = 1; i < 4; i++)
                             {
                                 name += reader.GetString(i) + " ";
                             }

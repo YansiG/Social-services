@@ -93,7 +93,6 @@
                                     <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding [1]}" />
                                     <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding [2]}" />
                                     <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding [3]}" />
-                                    <GridViewColumn Header="Группа" DisplayMemberBinding="{Binding [4]}" />
 
                                 </GridView>
                             </ListView.View>

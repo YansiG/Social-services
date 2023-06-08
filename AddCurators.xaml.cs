@@ -36,7 +36,7 @@ namespace TalentedYouthProgect
         {
             if (textBox1.Text != "" && textBox2.Text != "")
             {
-                DataBase.Write("Curators", "Name, Surname, Lastname, StudentGroup", textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
+                DataBase.Write("Curators", "Name, Surname, Lastname", textBox1.Text, textBox2.Text, textBox3.Text);
                 var ures = System.Windows.MessageBox.Show("Данные обновленны.", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
                 if (ures == MessageBoxResult.OK)
                 {
