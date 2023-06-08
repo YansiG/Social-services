@@ -321,6 +321,12 @@ namespace TalentedYouthProgect
             UpdateData();
         }
 
+        private void buttonEdit_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //DataBase.GetID("Students", "ID", "Name", )
+            //РЕАЛИЗОВАТЬ
+        }
+
         private void SetId(int id)
         {
             //disabled_id = Convert.ToInt32(DataBase.Read("Hub", "disabled_ID", "Student_ID", id.ToString()));

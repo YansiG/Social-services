@@ -12,11 +12,18 @@
     <None Remove="Ico.png" />
     <None Remove="image\addico.png" />
     <None Remove="image\deleteico.png" />
+    <None Remove="image\Edit.png" />
     <None Remove="image\infoico.png" />
     <None Remove="image\reicon.png" />
     <None Remove="image\searchico.png" />
     <None Remove="MainIco.png" />
     <None Remove="StudentReport.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="image\Edit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

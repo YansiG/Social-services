@@ -138,6 +138,11 @@ namespace TalentedYouthProgect
             }
         }
 
+        public void EditData(int id)
+        {
+
+        }
+
         private void preventiveWork_Click(object sender, RoutedEventArgs e)
         {
             if ((bool)preventiveWork.IsChecked)
