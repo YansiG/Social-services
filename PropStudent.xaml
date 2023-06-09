@@ -32,7 +32,7 @@
         <CheckBox x:Name="disabledPerson"  Content="Дети инвалиды" Margin="630,122,0,0" Width="160" VerticalAlignment="Top" HorizontalAlignment="Left" Click="disabledPerson_Click"/>
         <CheckBox x:Name="socialInvestigation"  Content="Соц. расследование" Margin="465,159,0,0" Width="160" VerticalAlignment="Top" HorizontalAlignment="Left" Click="socialInvestigation_Click"/>
         <CheckBox x:Name="foreignСitizens" Content="Иностранные граждане" Margin="630,159,0,0" Width="160" VerticalAlignment="Top" HorizontalAlignment="Left" Click="foreignСitizens_Click"/>
-        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="485,424,0,0" VerticalAlignment="Top" Height="50" Width="150" Click="Button_Click_1"/>
+        <Button x:Name="SaveBut" Content="Сохранить" HorizontalAlignment="Left" Margin="485,424,0,0" VerticalAlignment="Top" Height="50" Width="150" Click="Button_Click_1"/>
         <Button Content="Закрыть" HorizontalAlignment="Left" Margin="640,424,0,0" VerticalAlignment="Top" Height="50" Width="150" Click="Button_Click"/>
 
     </Grid>

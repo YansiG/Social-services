@@ -140,6 +140,12 @@ namespace TalentedYouthProgect
 
         public void EditData(int id)
         {
+            SaveBut.Click -= Button_Click_1;
+            SaveBut.Click += Edit_Click;
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)//РЕАЛИЗОВАТЬ
+        {
 
         }
 
