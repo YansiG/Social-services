@@ -14,8 +14,8 @@
             <Button x:Name="DeleteStudent" HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="DeleteStudent_Click" Foreground="{x:Null}" BorderBrush="{x:Null}">
                 <Image Source="/image/deleteico.png"/>
             </Button>
-            <Button x:Name="buttonEdit" HorizontalAlignment="Left" Margin="80,10,0,0" VerticalAlignment="Top" Height="30" Width="30" BorderBrush="Black" Foreground="{x:Null}" MouseLeftButtonDown="buttonEdit_MouseLeftButtonDown">
-                <Image Source="/image/Edit.png" Stretch="Uniform" MouseLeftButtonDown="buttonEdit_MouseLeftButtonDown"/>
+            <Button x:Name="buttonEdit" HorizontalAlignment="Left" Margin="80,10,0,0" VerticalAlignment="Top" Height="30" Width="30" BorderBrush="Black" Foreground="{x:Null}" Click="ClickEdit_MouseLeftButtonDown">
+                <Image Source="/image/Edit.png" Stretch="Fill"/>
             </Button>
             <Button x:Name="button1" HorizontalAlignment="Left" Margin="115,10,0,0" VerticalAlignment="Top" Height="30" Width="30" BorderBrush="Black" Foreground="{x:Null}" Click="button1_Click_1">
                 <Image Source="/image/reicon.png" Stretch="Uniform"/>

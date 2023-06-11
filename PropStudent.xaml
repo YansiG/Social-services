@@ -15,9 +15,9 @@
         <DatePicker x:Name="dateTimePicker2" HorizontalAlignment="Left" Margin="10,155,0,0" VerticalAlignment="Top" Width="300"/>
         <Label Content="Адрес проживания" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox6" HorizontalAlignment="Left" Margin="10,331,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300"/>
-        <ComboBox x:Name="groupBox"  HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Width="300"/>
+        <ComboBox x:Name="groupBox"  HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Width="300" IsEditable="True"/>
         <Label Content="Учебная группа" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="comboBox1"  HorizontalAlignment="Left" Margin="10,273,0,0" VerticalAlignment="Top" Width="300"/>
+        <ComboBox x:Name="comboBox1"  HorizontalAlignment="Left" Margin="10,273,0,0" VerticalAlignment="Top" Width="300" IsEditable="True"/>
         <Label Content="Куратор" HorizontalAlignment="Left" Margin="10,242,0,0" VerticalAlignment="Top"/>
         <Label Content="Адрес регистрации" HorizontalAlignment="Left" Margin="10,358,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox7" HorizontalAlignment="Left" Margin="10,389,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300"/>

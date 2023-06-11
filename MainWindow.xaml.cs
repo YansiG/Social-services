@@ -321,14 +321,13 @@ namespace TalentedYouthProgect
             UpdateData();
         }
 
-        private void buttonEdit_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void ClickEdit_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
             string selectId = DataBase.GetID("Students", "name", (listViewStudent.SelectedItem as string[]).GetValue(1).ToString(), "birthday", (listViewStudent.SelectedItem as string[]).GetValue(2).ToString());
-            MessageBox.Show(selectId);
+            //MessageBox.Show(selectId);
             PropStudent ps = new PropStudent(this);
             ps.Show();
             ps.EditData(int.Parse(selectId));
-            //РЕАЛИЗОВАТЬ
         }
 
         private void SetId(int id)

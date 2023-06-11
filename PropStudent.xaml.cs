@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Forms;
 
 namespace TalentedYouthProgect
 {
@@ -12,6 +11,7 @@ namespace TalentedYouthProgect
     public partial class PropStudent : Window
     {
         MainWindow mainWindow;
+        private int _studentID;
 
         public PropStudent(MainWindow mw)
         {
@@ -140,13 +140,121 @@ namespace TalentedYouthProgect
 
         public void EditData(int id)
         {
+            _studentID = id;
+            string sqlExpression = $"SELECT * FROM Students WHERE ID = '{_studentID}'";
+            List<string> result = new List<string>();
+            using (var connection = new SqliteConnection("Data Source=data.db"))
+            {
+                connection.Open();
+
+                SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+                using (SqliteDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            result.Clear();
+                            for (int i = 0; i < 9; i++)
+                            {
+                                result.Add(reader.GetString(i));
+                            }
+                        }
+                    }
+                }
+            }
+            textBox1.Text = result[1].ToString();
+            dateTimePicker1.Text = result[2].ToString();
+            dateTimePicker2.Text = result[3].ToString();
+            comboBox1.SelectedValue = result[5].ToString();
+            groupBox.SelectedValue = result[4].ToString();
+            textBox6.Text = result[6].ToString();
+            textBox7.Text = result[7].ToString();
+            textBox8.Text = result[8].ToString();
+
             SaveBut.Click -= Button_Click_1;
             SaveBut.Click += Edit_Click;
+
+            List<string> hub = DataBase.ReadS("Hub", "*", "Student_ID", _studentID.ToString());
+            if (hub[1] != "NULL")
+            {
+                disabledPerson.IsChecked = true;
+            }
+            if (hub[2] != "NULL")
+            {
+                orphan.IsChecked = true;
+            }
+            if (hub[3] != "NULL")
+            {
+                preventiveWork.IsChecked = true;
+            }
+            if (hub[4] != "NULL")
+            {
+                socialDanger.IsChecked = true;
+            }
+            if (hub[5] != "NULL")
+            {
+                foreignСitizens.IsChecked = true;
+            }
+            if (hub[6] != "NULL")
+            {
+                socialInvestigation.IsChecked = true;
+            }
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)//РЕАЛИЗОВАТЬ
         {
+            DataBase.Update("Students", "name", textBox1.Text, "ID", _studentID.ToString());
+            DataBase.Update("Students", "birthday", dateTimePicker1.Text, "ID", _studentID.ToString());
+            DataBase.Update("Students", "admissionYear", dateTimePicker2.Text, "ID", _studentID.ToString());
+            DataBase.Update("Students", "studentGroup", groupBox.SelectedValue.ToString(), "ID", _studentID.ToString());
+            DataBase.Update("Students", "сurator", comboBox1.SelectedValue.ToString(), "ID", _studentID.ToString());
+            DataBase.Update("Students", "residentialAddress", textBox6.Text, "ID", _studentID.ToString());
+            DataBase.Update("Students", "registrationAddress", textBox7.Text, "ID", _studentID.ToString());
+            DataBase.Update("Students", "mobile", textBox8.Text, "ID", _studentID.ToString());
 
+            List<string> hub = DataBase.ReadS("Hub", "*", "Student_ID", _studentID.ToString());
+            if (!(bool)disabledPerson.IsChecked)
+            {
+                DataBase.Delete("disabled", "", "ID", hub[1].ToString());
+
+                DataBase.Update("Hub", "disabled_ID", DataBase.GetID("disabled"), "Student_ID", _studentID.ToString());
+            }
+            if (!(bool)orphan.IsChecked)
+            {
+                DataBase.Delete("orphan", "", "ID", hub[2].ToString());
+
+                DataBase.Update("Hub", "orphan_ID", DataBase.GetID("orphan"), "Student_ID", _studentID.ToString());
+            }
+            if (!(bool)preventiveWork.IsChecked)
+            {
+                DataBase.Delete("ipr", "", "ID", hub[3].ToString());
+
+                DataBase.Update("Hub", "ipr_ID", DataBase.GetID("ipr"), "Student_ID", _studentID.ToString());
+            }
+            if (!(bool)socialDanger.IsChecked)
+            {
+                DataBase.Delete("sop", "", "ID", hub[4].ToString());
+
+                DataBase.Update("Hub", "sop_ID", DataBase.GetID("sop"), "Student_ID", _studentID.ToString());
+            }
+            if (!(bool)socialInvestigation.IsChecked)
+            {
+                DataBase.Delete("investigation", "", "ID", hub[6].ToString());
+
+                DataBase.Update("Hub", "investigation_ID", DataBase.GetID("investigation"), "Student_ID", _studentID.ToString());
+            }
+            if (!(bool)foreignСitizens.IsChecked)
+            {
+                DataBase.Delete("foreignC", "", "ID", hub[5].ToString());
+                DataBase.Update("Hub", "foreign_ID", DataBase.GetID("foreignC"), "Student_ID", _studentID.ToString());
+            }
+
+            var ures = System.Windows.MessageBox.Show("Данные обновленны.", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (ures == MessageBoxResult.OK)
+            {
+                this.Close();
+            }
         }
 
         private void preventiveWork_Click(object sender, RoutedEventArgs e)

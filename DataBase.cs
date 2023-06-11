@@ -128,6 +128,38 @@ namespace TalentedYouthProgect
             }
             return value;
         }
+        public static List<string> ReadS(string table, string column, string where, string result)
+        {
+            string sqlExpression = $"SELECT {column} FROM {table} WHERE {where} = '{result}'";
+            List<string> results = new List<string>();
+            using (var connection = new SqliteConnection("Data Source=data.db"))
+            {
+                connection.Open();
+
+                SqliteCommand command = new SqliteCommand(sqlExpression, connection);
+                using (SqliteDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            for (int i = 0; i < 7; i++)
+                            {
+                                if(reader.IsDBNull(i))
+                                {
+                                    results.Add("NULL");
+                                }
+                                else
+                                {
+                                    results.Add(reader.GetString(i));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return results;
+        }
         public static void Update(string table, string colums, string value_to_update, string where, string result)
         {
             using (var connection = new SqliteConnection("Data Source=data.db"))
