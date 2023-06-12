@@ -214,40 +214,68 @@ namespace TalentedYouthProgect
             DataBase.Update("Students", "mobile", textBox8.Text, "ID", _studentID.ToString());
 
             List<string> hub = DataBase.ReadS("Hub", "*", "Student_ID", _studentID.ToString());
+
             if (!(bool)disabledPerson.IsChecked)
             {
                 DataBase.Delete("disabled", "", "ID", hub[1].ToString());
-
-                DataBase.Update("Hub", "disabled_ID", DataBase.GetID("disabled"), "Student_ID", _studentID.ToString());
+                DataBase.SetNull("Hub", "disabled_ID", "Student_ID", _studentID.ToString());
+                //string id = DataBase.GetID("disabled");
+                //DataBase.Update("Hub", "disabled_ID", id, "Student_ID", _studentID.ToString());
+            }
+            else
+            {
+                string id = DataBase.GetID("disabled");
+                DataBase.Update("Hub", "disabled_ID", id, "Student_ID", _studentID.ToString());
             }
             if (!(bool)orphan.IsChecked)
             {
                 DataBase.Delete("orphan", "", "ID", hub[2].ToString());
-
-                DataBase.Update("Hub", "orphan_ID", DataBase.GetID("orphan"), "Student_ID", _studentID.ToString());
+                string id = DataBase.GetID("orphan");
+                if (id != "")
+                {
+                    DataBase.Update("Hub", "orphan_ID", id, "Student_ID", _studentID.ToString());
+                }
+                
             }
             if (!(bool)preventiveWork.IsChecked)
             {
                 DataBase.Delete("ipr", "", "ID", hub[3].ToString());
-
-                DataBase.Update("Hub", "ipr_ID", DataBase.GetID("ipr"), "Student_ID", _studentID.ToString());
+                string id = DataBase.GetID("ipr");
+                if (id != "")
+                {
+                    DataBase.Update("Hub", "ipr_ID", id, "Student_ID", _studentID.ToString());
+                }
+                
             }
             if (!(bool)socialDanger.IsChecked)
             {
                 DataBase.Delete("sop", "", "ID", hub[4].ToString());
-
-                DataBase.Update("Hub", "sop_ID", DataBase.GetID("sop"), "Student_ID", _studentID.ToString());
+                string id = DataBase.GetID("sop");
+                if (id != "")
+                {
+                    DataBase.Update("Hub", "sop_ID", id, "Student_ID", _studentID.ToString());
+                }
+                
             }
             if (!(bool)socialInvestigation.IsChecked)
             {
                 DataBase.Delete("investigation", "", "ID", hub[6].ToString());
-
-                DataBase.Update("Hub", "investigation_ID", DataBase.GetID("investigation"), "Student_ID", _studentID.ToString());
+                string id = DataBase.GetID("investigation");
+                if (id != "")
+                {
+                    DataBase.Update("Hub", "investigation_ID", id, "Student_ID", _studentID.ToString());
+                }
+                
             }
             if (!(bool)foreignСitizens.IsChecked)
             {
                 DataBase.Delete("foreignC", "", "ID", hub[5].ToString());
-                DataBase.Update("Hub", "foreign_ID", DataBase.GetID("foreignC"), "Student_ID", _studentID.ToString());
+                string id = DataBase.GetID("foreignC");
+                if (id != "")
+                {
+                    DataBase.Update("Hub", "foreign_ID", id, "Student_ID", _studentID.ToString());
+                }
+                
             }
 
             var ures = System.Windows.MessageBox.Show("Данные обновленны.", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);

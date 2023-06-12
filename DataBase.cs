@@ -171,6 +171,17 @@ namespace TalentedYouthProgect
                 command.ExecuteNonQuery();
             }
         }
+        public static void SetNull(string table, string colums, string where, string result)
+        {
+            using (var connection = new SqliteConnection("Data Source=data.db"))
+            {
+                connection.Open();
+
+                SqliteCommand command = new SqliteCommand($"UPDATE {table} SET {colums}=NULL WHERE {where}='{result}'", connection);
+
+                command.ExecuteNonQuery();
+            }
+        }
         public static void Delete(string table, string row, string where, string result)
         {
             using (var connection = new SqliteConnection("Data Source=data.db"))
