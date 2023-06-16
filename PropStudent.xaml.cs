@@ -12,6 +12,7 @@ namespace TalentedYouthProgect
     {
         MainWindow mainWindow;
         private int _studentID;
+        public int? disabled_id, orphan_id, ipr_id, sop_id, investigation_id, foreign_id;
 
         public PropStudent(MainWindow mw)
         {

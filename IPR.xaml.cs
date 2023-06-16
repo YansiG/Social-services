@@ -38,6 +38,7 @@ namespace TalentedYouthProgect
             if (textBox1.Text != "")
             {
                 DataBase.Write("ipr", "cause, date, numdatecause, area, category, terminationdate", textBox1.Text, dateTimePicker1.Text, textBox3.Text, textBox4.Text, textBox5.Text, dateTimePicker2.Text);
+                //propStudent.ipr_id = 
             }
             else
             {

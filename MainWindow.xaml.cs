@@ -602,12 +602,12 @@ namespace TalentedYouthProgect
                     System.Windows.MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
-                DataBase.Delete("disabled", "", "ID", disabled_id.ToString());
-                DataBase.Delete("orphan", "", "ID", orphan_id.ToString());
-                DataBase.Delete("ipr", "", "ID", ipr_id.ToString());
-                DataBase.Delete("sop", "", "ID", sop_id.ToString());
-                DataBase.Delete("investigation", "", "ID", investigation_id.ToString());
-                DataBase.Delete("foreignC", "", "ID", foreign_id.ToString());
+                //DataBase.Delete("disabled", "", "ID", disabled_id.ToString());
+                //DataBase.Delete("orphan", "", "ID", orphan_id.ToString());
+                //DataBase.Delete("ipr", "", "ID", ipr_id.ToString());
+                //DataBase.Delete("sop", "", "ID", sop_id.ToString());
+                //DataBase.Delete("investigation", "", "ID", investigation_id.ToString());
+                //DataBase.Delete("foreignC", "", "ID", foreign_id.ToString());
             }
 
             if (listViewSecondTab.SelectedItems.Count > 0)
