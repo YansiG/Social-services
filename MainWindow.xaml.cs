@@ -323,6 +323,10 @@ namespace TalentedYouthProgect
 
         private void ClickEdit_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
+            if(listViewStudent.SelectedItem == null)
+            {
+                return;
+            }
             string selectId = DataBase.GetID("Students", "name", (listViewStudent.SelectedItem as string[]).GetValue(1).ToString(), "birthday", (listViewStudent.SelectedItem as string[]).GetValue(2).ToString());
             //MessageBox.Show(selectId);
             PropStudent ps = new PropStudent(this);

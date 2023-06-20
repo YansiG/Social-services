@@ -13,6 +13,7 @@ namespace TalentedYouthProgect
         MainWindow mainWindow;
         private int _studentID;
         public int? disabled_id, orphan_id, ipr_id, sop_id, investigation_id, foreign_id;
+        private List<string> hub_id;
 
         public PropStudent(MainWindow mw)
         {
@@ -96,8 +97,15 @@ namespace TalentedYouthProgect
             if (textBox1.Text != "" && comboBox1.SelectedIndex > -1 && groupBox.SelectedIndex > -1)
             {
                 int Student_ID = Convert.ToInt32(DataBase.Read("SQLITE_SEQUENCE", "seq", "name", "Students")) + 1;
-
-                DataBase.Write("Students", "name, birthday, admissionYear, studentGroup, сurator, residentialAddress, registrationAddress, mobile, Hub_ID", textBox1.Text, dateTimePicker1.Text, dateTimePicker2.SelectedDate.Value.ToString("yyyy.MM.dd"), groupBox.SelectedItem.ToString(), comboBox1.SelectedItem.ToString(), textBox6.Text, textBox7.Text, textBox8.Text, Student_ID.ToString());
+                try
+                {
+                    DataBase.Write("Students", "name, birthday, admissionYear, studentGroup, сurator, residentialAddress, registrationAddress, mobile, Hub_ID", textBox1.Text, dateTimePicker1.Text, dateTimePicker2.SelectedDate.Value.ToString("yyyy.MM.dd"), groupBox.SelectedItem.ToString(), comboBox1.SelectedItem.ToString(), textBox6.Text, textBox7.Text, textBox8.Text, Student_ID.ToString());
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Ошибка заполенения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
                 DataBase.Write("Hub", "Student_ID", Student_ID.ToString());
 
@@ -176,28 +184,28 @@ namespace TalentedYouthProgect
             SaveBut.Click -= Button_Click_1;
             SaveBut.Click += Edit_Click;
 
-            List<string> hub = DataBase.ReadS("Hub", "*", "Student_ID", _studentID.ToString());
-            if (hub[1] != "NULL")
+            hub_id = DataBase.ReadS("Hub", "*", "Student_ID", _studentID.ToString());
+            if (hub_id[1] != "NULL")
             {
                 disabledPerson.IsChecked = true;
             }
-            if (hub[2] != "NULL")
+            if (hub_id[2] != "NULL")
             {
                 orphan.IsChecked = true;
             }
-            if (hub[3] != "NULL")
+            if (hub_id[3] != "NULL")
             {
                 preventiveWork.IsChecked = true;
             }
-            if (hub[4] != "NULL")
+            if (hub_id[4] != "NULL")
             {
                 socialDanger.IsChecked = true;
             }
-            if (hub[5] != "NULL")
+            if (hub_id[5] != "NULL")
             {
                 foreignСitizens.IsChecked = true;
             }
-            if (hub[6] != "NULL")
+            if (hub_id[6] != "NULL")
             {
                 socialInvestigation.IsChecked = true;
             }
@@ -205,6 +213,15 @@ namespace TalentedYouthProgect
 
         private void Edit_Click(object sender, RoutedEventArgs e)//РЕАЛИЗОВАТЬ
         {
+            if((bool)preventiveWork.IsChecked)
+            {
+                MessageBox.Show("sdad");
+            }
+            else
+            {
+                disabledPerson.IsChecked = true; MessageBox.Show("1");
+            }
+            
             DataBase.Update("Students", "name", textBox1.Text, "ID", _studentID.ToString());
             DataBase.Update("Students", "birthday", dateTimePicker1.Text, "ID", _studentID.ToString());
             DataBase.Update("Students", "admissionYear", dateTimePicker2.Text, "ID", _studentID.ToString());
@@ -214,69 +231,36 @@ namespace TalentedYouthProgect
             DataBase.Update("Students", "registrationAddress", textBox7.Text, "ID", _studentID.ToString());
             DataBase.Update("Students", "mobile", textBox8.Text, "ID", _studentID.ToString());
 
-            List<string> hub = DataBase.ReadS("Hub", "*", "Student_ID", _studentID.ToString());
-
-            if (!(bool)disabledPerson.IsChecked)
-            {
-                DataBase.Delete("disabled", "", "ID", hub[1].ToString());
-                DataBase.SetNull("Hub", "disabled_ID", "Student_ID", _studentID.ToString());
-                //string id = DataBase.GetID("disabled");
-                //DataBase.Update("Hub", "disabled_ID", id, "Student_ID", _studentID.ToString());
-            }
-            else
+            if (hub_id[1] == "NULL" && (bool)disabledPerson.IsChecked)
             {
                 string id = DataBase.GetID("disabled");
                 DataBase.Update("Hub", "disabled_ID", id, "Student_ID", _studentID.ToString());
+                
             }
-            if (!(bool)orphan.IsChecked)
+            if (hub_id[2] == "NULL" &&  (bool)orphan.IsChecked)
             {
-                DataBase.Delete("orphan", "", "ID", hub[2].ToString());
                 string id = DataBase.GetID("orphan");
-                if (id != "")
-                {
-                    DataBase.Update("Hub", "orphan_ID", id, "Student_ID", _studentID.ToString());
-                }
-                
+                DataBase.Update("Hub", "orphan_ID", id, "Student_ID", _studentID.ToString());
             }
-            if (!(bool)preventiveWork.IsChecked)
+            if (hub_id[3] == "NULL" && (bool)preventiveWork.IsChecked)
             {
-                DataBase.Delete("ipr", "", "ID", hub[3].ToString());
                 string id = DataBase.GetID("ipr");
-                if (id != "")
-                {
-                    DataBase.Update("Hub", "ipr_ID", id, "Student_ID", _studentID.ToString());
-                }
-                
+                DataBase.Update("Hub", "ipr_ID", id, "Student_ID", _studentID.ToString());
             }
-            if (!(bool)socialDanger.IsChecked)
+            if (hub_id[4] == "NULL" && (bool)socialDanger.IsChecked)
             {
-                DataBase.Delete("sop", "", "ID", hub[4].ToString());
                 string id = DataBase.GetID("sop");
-                if (id != "")
-                {
-                    DataBase.Update("Hub", "sop_ID", id, "Student_ID", _studentID.ToString());
-                }
-                
+                DataBase.Update("Hub", "sop_ID", id, "Student_ID", _studentID.ToString());
             }
-            if (!(bool)socialInvestigation.IsChecked)
+            if (hub_id[6] == "NULL" && (bool)socialInvestigation.IsChecked)
             {
-                DataBase.Delete("investigation", "", "ID", hub[6].ToString());
-                string id = DataBase.GetID("investigation");
-                if (id != "")
-                {
-                    DataBase.Update("Hub", "investigation_ID", id, "Student_ID", _studentID.ToString());
-                }
-                
+                string id = DataBase.GetID("sop");
+                DataBase.Update("Hub", "investigation_ID", id, "Student_ID", _studentID.ToString());
             }
-            if (!(bool)foreignСitizens.IsChecked)
+            if (hub_id[5] == "NULL" && (bool)foreignСitizens.IsChecked)
             {
-                DataBase.Delete("foreignC", "", "ID", hub[5].ToString());
                 string id = DataBase.GetID("foreignC");
-                if (id != "")
-                {
-                    DataBase.Update("Hub", "foreign_ID", id, "Student_ID", _studentID.ToString());
-                }
-                
+                DataBase.Update("Hub", "foreign_ID", id, "Student_ID", _studentID.ToString());
             }
 
             var ures = System.Windows.MessageBox.Show("Данные обновленны.", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -311,6 +295,48 @@ namespace TalentedYouthProgect
                 OrphanForm of = new OrphanForm(this);
                 of.Show();
             }
+        }
+
+        private void preventiveWork_Unchecked(object sender, RoutedEventArgs e)
+        {
+            hub_id[3] = "NULL";
+            DataBase.Delete("ipr", "", "ID", hub_id[3].ToString());
+            DataBase.SetNull("Hub", "ipr_ID", "Student_ID", _studentID.ToString());
+        }
+
+        private void disabledPerson_Unchecked(object sender, RoutedEventArgs e)
+        {
+            hub_id[1] = "NULL";
+            DataBase.Delete("disabled", "", "ID", hub_id[1].ToString());
+            DataBase.SetNull("Hub", "disabled_ID", "Student_ID", _studentID.ToString());
+        }
+
+        private void socialDanger_Unchecked(object sender, RoutedEventArgs e)
+        {
+            hub_id[4] = "NULL";
+            DataBase.Delete("sop", "", "ID", hub_id[4].ToString());
+            DataBase.SetNull("Hub", "sop_ID", "Student_ID", _studentID.ToString());
+        }
+
+        private void orphan_Unchecked(object sender, RoutedEventArgs e)
+        {
+            hub_id[2] = "NULL";
+            DataBase.Delete("orphan", "", "ID", hub_id[2].ToString());
+            DataBase.SetNull("Hub", "orphan_ID", "Student_ID", _studentID.ToString());
+        }
+
+        private void socialInvestigation_Unchecked(object sender, RoutedEventArgs e)
+        {
+            hub_id[6] = "NULL";
+            DataBase.Delete("investigation", "", "ID", hub_id[6].ToString());
+            DataBase.SetNull("Hub", "investigation_ID", "Student_ID", _studentID.ToString());
+        }
+
+        private void foreignСitizens_Unchecked(object sender, RoutedEventArgs e)
+        {
+            hub_id[5] = "NULL";
+            DataBase.Delete("foreignC", "", "ID", hub_id[1].ToString());
+            DataBase.SetNull("Hub", "foreign_ID", "Student_ID", _studentID.ToString());
         }
 
         private void disabledPerson_Click(object sender, RoutedEventArgs e)
