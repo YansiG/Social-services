@@ -23,15 +23,28 @@
         <TextBox x:Name="textBox7" HorizontalAlignment="Left" Margin="10,389,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300"/>
         <Label Content="Телефон" HorizontalAlignment="Left" Margin="10,415,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox8" HorizontalAlignment="Left" Margin="10,446,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300"/>
+        <ComboBox x:Name="districtComboBox" Margin="465,66,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEditable="True" Width="325" Height="22">
+            <ComboBox.Items>
+                <ComboBoxItem Content="Центральный район"/>
+                <ComboBoxItem Content="Советский район"/>
+                <ComboBoxItem Content="Первомайский район"/>
+                <ComboBoxItem Content="Партизанский район"/>
+                <ComboBoxItem Content="Заводской район"/>
+                <ComboBoxItem Content="Ленинский район"/>
+                <ComboBoxItem Content="Октябрьский район"/>
+                <ComboBoxItem Content="Московский район"/>
+                <ComboBoxItem Content="Фрунзенский район"/>
+            </ComboBox.Items>
+        </ComboBox>
 
         <Button Content="Добавить нового куратора" HorizontalAlignment="Left" Margin="465,11,0,0" VerticalAlignment="Top" Height="40" Width="160" Click="Button_Click_3"/>
         <Button Content="Добавить новую группу" HorizontalAlignment="Left" Margin="630,11,0,0" VerticalAlignment="Top" Height="40" Width="160" Click="Button_Click_2"/>
-        <CheckBox x:Name="preventiveWork" Content="ИПР" Margin="465,83,0,0" Width="160" VerticalAlignment="Top" HorizontalAlignment="Left" Click="preventiveWork_Click" Unchecked="preventiveWork_Unchecked"/>
-        <CheckBox x:Name="socialDanger" Content="СОП" Margin="630,83,0,0" Width="160" VerticalAlignment="Top" HorizontalAlignment="Left" Click="socialDanger_Click" Unchecked="socialDanger_Unchecked"/>
-        <CheckBox x:Name="orphan" Content="Дети - сироты" Margin="465,122,0,0" Width="160" VerticalAlignment="Top" HorizontalAlignment="Left" Click="orphan_Click" Unchecked="orphan_Unchecked"/>
-        <CheckBox x:Name="disabledPerson"  Content="Дети инвалиды" Margin="630,122,0,0" Width="160" VerticalAlignment="Top" HorizontalAlignment="Left" Click="disabledPerson_Click" Unchecked="disabledPerson_Unchecked"/>
-        <CheckBox x:Name="socialInvestigation"  Content="Соц. расследование" Margin="465,159,0,0" Width="160" VerticalAlignment="Top" HorizontalAlignment="Left" Click="socialInvestigation_Click" Unchecked="socialInvestigation_Unchecked"/>
-        <CheckBox x:Name="foreignСitizens" Content="Иностранные граждане" Margin="630,159,0,0" Width="160" VerticalAlignment="Top" HorizontalAlignment="Left" Click="foreignСitizens_Click" Unchecked="foreignСitizens_Unchecked"/>
+        <CheckBox x:Name="preventiveWork" Content="ИПР" Margin="465,106,0,0" Width="160" VerticalAlignment="Top" HorizontalAlignment="Left" Click="preventiveWork_Click" Unchecked="preventiveWork_Unchecked"/>
+        <CheckBox x:Name="socialDanger" Content="СОП" Margin="630,106,0,0" Width="160" VerticalAlignment="Top" HorizontalAlignment="Left" Click="socialDanger_Click" Unchecked="socialDanger_Unchecked"/>
+        <CheckBox x:Name="orphan" Content="Дети - сироты" Margin="465,145,0,0" Width="160" VerticalAlignment="Top" HorizontalAlignment="Left" Click="orphan_Click" Unchecked="orphan_Unchecked"/>
+        <CheckBox x:Name="disabledPerson"  Content="Дети инвалиды" Margin="630,145,0,0" Width="160" VerticalAlignment="Top" HorizontalAlignment="Left" Click="disabledPerson_Click" Unchecked="disabledPerson_Unchecked"/>
+        <CheckBox x:Name="socialInvestigation"  Content="Соц. расследование" Margin="465,182,0,0" Width="160" VerticalAlignment="Top" HorizontalAlignment="Left" Click="socialInvestigation_Click" Unchecked="socialInvestigation_Unchecked"/>
+        <CheckBox x:Name="foreignСitizens" Content="Иностранные граждане" Margin="630,182,0,0" Width="160" VerticalAlignment="Top" HorizontalAlignment="Left" Click="foreignСitizens_Click" Unchecked="foreignСitizens_Unchecked"/>
         <Button x:Name="SaveBut" Content="Сохранить" HorizontalAlignment="Left" Margin="485,424,0,0" VerticalAlignment="Top" Height="50" Width="150" Click="Button_Click_1"/>
         <Button Content="Закрыть" HorizontalAlignment="Left" Margin="640,424,0,0" VerticalAlignment="Top" Height="50" Width="150" Click="Button_Click"/>
 

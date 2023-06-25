@@ -287,7 +287,7 @@ namespace TalentedYouthProgect
                 var res = DataBase.Search("Students", "(name || birthday || admissionYear || studentGroup || сurator || residentialAddress || registrationAddress || mobile)", textBox1.Text);
                 foreach (var item in res)
                 {
-                    listViewStudent.Items.Add(item);
+                    listViewStudent.Items.Add(item.ToArray());
                 }
             }
         }
@@ -330,8 +330,15 @@ namespace TalentedYouthProgect
             string selectId = DataBase.GetID("Students", "name", (listViewStudent.SelectedItem as string[]).GetValue(1).ToString(), "birthday", (listViewStudent.SelectedItem as string[]).GetValue(2).ToString());
             //MessageBox.Show(selectId);
             PropStudent ps = new PropStudent(this);
-            ps.Show();
-            ps.EditData(int.Parse(selectId));
+            try
+            {
+                ps.EditData(int.Parse(selectId));
+                ps.Show();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Повторно выберите учащегося для редактирования или перезагрузите приложение.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void SetId(int id)
@@ -364,7 +371,7 @@ namespace TalentedYouthProgect
                             while (reader.Read())
                             {
                                 result.Clear();
-                                for (int i = 0; i < 9; i++)
+                                for (int i = 0; i < 10; i++)
                                 {
                                     result.Add(reader.GetString(i));
                                 }
@@ -575,65 +582,66 @@ namespace TalentedYouthProgect
             ps.Show();
         }
 
-        private void DeleteStudent_Click(object sender, RoutedEventArgs e)
-        {
-            //MessageBox.Show((listViewStudent.SelectedItem as string[]).GetValue(1).ToString());
+        //    private void DeleteStudent_Click(object sender, RoutedEventArgs e)
+        //    {
+        //        //MessageBox.Show((listViewStudent.SelectedItem as string[]).GetValue(1).ToString());
 
-            if (listViewStudent.SelectedItems.Count > 0)
-            {
-                string key1 = "", key2 = "";
-                try
-                {
-                    key1 = (listViewStudent.SelectedItem as string[]).GetValue(1).ToString();
-                    key2 = (listViewStudent.SelectedItem as string[]).GetValue(2).ToString();
-                }
-                catch (Exception ex)
-                {
-                    System.Windows.MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+        //        if (listViewStudent.SelectedItems.Count > 0)
+        //        {
+        //            string key1 = "", key2 = "";
+        //            try
+        //            {
+        //                key1 = (listViewStudent.SelectedItem as string[]).GetValue(1).ToString();
+        //                key2 = (listViewStudent.SelectedItem as string[]).GetValue(2).ToString();
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                System.Windows.MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+        //            }
 
-                listViewStudent.Items.Remove(listViewStudent.SelectedItem as string[]);
+        //            listViewStudent.Items.Remove(listViewStudent.SelectedItem as string[]);
 
-                SetId(Convert.ToInt32(DataBase.Read("SQLITE_SEQUENCE", "seq", "name", "Students")));
+        //            SetId(Convert.ToInt32(DataBase.Read("SQLITE_SEQUENCE", "seq", "name", "Students")));
 
-                try
-                {
-                    DataBase.Delete("Hub", "", "Student_ID", DataBase.GetID("Students", "name", key1, "birthday", key2));
-                    DataBase.Delete("Students", "", "ID", DataBase.GetID("Students", "name", key1, "birthday", key2));
-                }
-                catch (Exception ex)
-                {
-                    System.Windows.MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+        //            try
+        //            {
+        //                DataBase.Delete("Hub", "", "Student_ID", DataBase.GetID("Students", "name", key1, "birthday", key2));
+        //                DataBase.Delete("Students", "", "ID", DataBase.GetID("Students", "name", key1, "birthday", key2));
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                System.Windows.MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+        //            }
 
-                //DataBase.Delete("disabled", "", "ID", disabled_id.ToString());
-                //DataBase.Delete("orphan", "", "ID", orphan_id.ToString());
-                //DataBase.Delete("ipr", "", "ID", ipr_id.ToString());
-                //DataBase.Delete("sop", "", "ID", sop_id.ToString());
-                //DataBase.Delete("investigation", "", "ID", investigation_id.ToString());
-                //DataBase.Delete("foreignC", "", "ID", foreign_id.ToString());
-            }
+        //            //DataBase.Delete("disabled", "", "ID", disabled_id.ToString());
+        //            //DataBase.Delete("orphan", "", "ID", orphan_id.ToString());
+        //            //DataBase.Delete("ipr", "", "ID", ipr_id.ToString());
+        //            //DataBase.Delete("sop", "", "ID", sop_id.ToString());
+        //            //DataBase.Delete("investigation", "", "ID", investigation_id.ToString());
+        //            //DataBase.Delete("foreignC", "", "ID", foreign_id.ToString());
+        //        }
 
-            if (listViewSecondTab.SelectedItems.Count > 0)
-            {
-                string key1 = "", key2 = "";
-                try
-                {
-                    key1 = (listViewSecondTab.SelectedItem as string[]).GetValue(1).ToString();
-                    key2 = (listViewSecondTab.SelectedItem as string[]).GetValue(2).ToString();
-                }
-                catch (Exception ex) { System.Windows.MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+        //        if (listViewSecondTab.SelectedItems.Count > 0)
+        //        {
+        //            string key1 = "", key2 = "";
+        //            try
+        //            {
+        //                key1 = (listViewSecondTab.SelectedItem as string[]).GetValue(1).ToString();
+        //                key2 = (listViewSecondTab.SelectedItem as string[]).GetValue(2).ToString();
+        //            }
+        //            catch (Exception ex) { System.Windows.MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
 
-                listViewSecondTab.Items.Remove(listViewSecondTab.SelectedItem as string[]);
+        //            listViewSecondTab.Items.Remove(listViewSecondTab.SelectedItem as string[]);
 
-                try
-                {
-                    DataBase.Delete("Curators", "", "ID", DataBase.GetID("Curators", "Name", key1, "Surname", key2));
-                }
-                catch (Exception ex) { System.Windows.MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
-            }
-            disabled_id = null; orphan_id = null; ipr_id = null; sop_id = null; investigation_id = null; foreign_id = null;
-        }
+        //            try
+        //            {
+        //                DataBase.Delete("Curators", "", "ID", DataBase.GetID("Curators", "Name", key1, "Surname", key2));
+        //            }
+        //            catch (Exception ex) { System.Windows.MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); }
+        //        }
+        //        disabled_id = null; orphan_id = null; ipr_id = null; sop_id = null; investigation_id = null; foreign_id = null;
+        //    }
     }
 }
+
 

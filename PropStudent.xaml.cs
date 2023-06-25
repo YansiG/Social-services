@@ -20,6 +20,7 @@ namespace TalentedYouthProgect
             InitializeComponent();
             mainWindow = mw;
             Update();
+            hub_id = new List<string>();
         }
 
         private List<string> curators()
@@ -99,7 +100,7 @@ namespace TalentedYouthProgect
                 int Student_ID = Convert.ToInt32(DataBase.Read("SQLITE_SEQUENCE", "seq", "name", "Students")) + 1;
                 try
                 {
-                    DataBase.Write("Students", "name, birthday, admissionYear, studentGroup, сurator, residentialAddress, registrationAddress, mobile, Hub_ID", textBox1.Text, dateTimePicker1.Text, dateTimePicker2.SelectedDate.Value.ToString("yyyy.MM.dd"), groupBox.SelectedItem.ToString(), comboBox1.SelectedItem.ToString(), textBox6.Text, textBox7.Text, textBox8.Text, Student_ID.ToString());
+                    DataBase.Write("Students", "name, birthday, admissionYear, studentGroup, сurator, residentialAddress, registrationAddress, area, mobile, Hub_ID", textBox1.Text, dateTimePicker1.Text, dateTimePicker2.SelectedDate.Value.ToString("yyyy.MM.dd"), groupBox.SelectedItem.ToString(), comboBox1.SelectedItem.ToString(), textBox6.Text, textBox7.Text, districtComboBox.Text, textBox8.Text, Student_ID.ToString());
                 }
                 catch(Exception ex)
                 {
@@ -164,7 +165,7 @@ namespace TalentedYouthProgect
                         while (reader.Read())
                         {
                             result.Clear();
-                            for (int i = 0; i < 9; i++)
+                            for (int i = 0; i < 10; i++)
                             {
                                 result.Add(reader.GetString(i));
                             }
@@ -179,7 +180,8 @@ namespace TalentedYouthProgect
             groupBox.SelectedValue = result[4].ToString();
             textBox6.Text = result[6].ToString();
             textBox7.Text = result[7].ToString();
-            textBox8.Text = result[8].ToString();
+            textBox8.Text = result[9].ToString();
+            districtComboBox.SelectedValue = result[8].ToString();
 
             SaveBut.Click -= Button_Click_1;
             SaveBut.Click += Edit_Click;
@@ -213,14 +215,14 @@ namespace TalentedYouthProgect
 
         private void Edit_Click(object sender, RoutedEventArgs e)//РЕАЛИЗОВАТЬ
         {
-            if((bool)preventiveWork.IsChecked)
-            {
-                MessageBox.Show("sdad");
-            }
-            else
-            {
-                disabledPerson.IsChecked = true; MessageBox.Show("1");
-            }
+            //if((bool)preventiveWork.IsChecked)
+            //{
+            //    MessageBox.Show("sdad");
+            //}
+            //else
+            //{
+            //    disabledPerson.IsChecked = true; MessageBox.Show("1");
+            //}
             
             DataBase.Update("Students", "name", textBox1.Text, "ID", _studentID.ToString());
             DataBase.Update("Students", "birthday", dateTimePicker1.Text, "ID", _studentID.ToString());

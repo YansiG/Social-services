@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TalentedYouthProgect"
         mc:Ignorable="d"
-        Title="Orphan" Height="430" Width="425" Icon="/Ico.png">
+        Title="Orphan" Height="430" Width="425" Icon="/Ico.png" Closed="Window_Closed">
     <Grid>
         <Label Content="Тип семьи" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="12,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="390"/>

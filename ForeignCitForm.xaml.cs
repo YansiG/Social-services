@@ -20,7 +20,6 @@ namespace TalentedYouthProgect
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            propStudent.foreignСitizens.IsChecked = false;
             this.Close();
         }
 
@@ -34,7 +33,13 @@ namespace TalentedYouthProgect
             {
                 System.Windows.MessageBox.Show("Не заполнены обязательные к заполнению поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            this.Closed -= Window_Closed;
             this.Close();
+        }
+
+        private void Window_Closed(object sender, System.EventArgs e)
+        {
+            propStudent.foreignСitizens.IsChecked = false;
         }
     }
 }

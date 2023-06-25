@@ -37,7 +37,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.5" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.8" />
     <PackageReference Include="ReportViewerCore.NETCore" Version="15.1.17" />
     <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.17" />
     <PackageReference Include="System.Data.Odbc" Version="7.0.0" />

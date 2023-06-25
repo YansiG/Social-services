@@ -11,7 +11,7 @@
             <Button x:Name="AddNewStudent" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="AddNewStudent_Click" Foreground="{x:Null}" BorderBrush="{x:Null}">
                 <Image Source="/image/addico.png" Stretch="Fill"/>
             </Button>
-            <Button x:Name="DeleteStudent" HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="DeleteStudent_Click" Foreground="{x:Null}" BorderBrush="{x:Null}">
+            <Button x:Name="DeleteStudent" HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top" Height="30" Width="30" Foreground="{x:Null}" BorderBrush="{x:Null}">
                 <Image Source="/image/deleteico.png"/>
             </Button>
             <Button x:Name="buttonEdit" HorizontalAlignment="Left" Margin="80,10,0,0" VerticalAlignment="Top" Height="30" Width="30" BorderBrush="Black" Foreground="{x:Null}" Click="ClickEdit_MouseLeftButtonDown">
@@ -54,7 +54,8 @@
                                     <GridViewColumn Header="Куратор" DisplayMemberBinding="{Binding [5]}" />
                                     <GridViewColumn Header="Адрес проживания" DisplayMemberBinding="{Binding [6]}" />
                                     <GridViewColumn Header="Адрес регистрации" DisplayMemberBinding="{Binding [7]}" />
-                                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding [8]}" />
+                                    <GridViewColumn Header="Район" DisplayMemberBinding="{Binding [8]}" />
+                                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding [9]}" />
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -70,8 +71,8 @@
                         </ListBox>
                         <ComboBox x:Name="groupBox"  HorizontalAlignment="Right" Margin="0,186,10,0" VerticalAlignment="Top" Width="242" Grid.Column="1" SelectionChanged="groupBox_SelectionChanged" IsEditable="True"/>
                         <ComboBox x:Name="curatorBox"  HorizontalAlignment="Right" Margin="0,244,10,0" VerticalAlignment="Top" Width="242" Grid.Column="1" SelectionChanged="curatorBox_SelectionChanged" IsEditable="True"/>
-                        <Label Grid.Column="1" Content="Группа" HorizontalAlignment="Right" Margin="944,155,0,0" VerticalAlignment="Top" Width="242"/>
-                        <Label Grid.Column="1" Content="Куратор" HorizontalAlignment="Right" Margin="944,213,0,0" VerticalAlignment="Top" Width="242"/>
+                        <Label Grid.Column="1" Content="Группа" HorizontalAlignment="Left" Margin="944,155,0,0" VerticalAlignment="Top" Width="242"/>
+                        <Label Grid.Column="1" Content="Куратор" HorizontalAlignment="Left" Margin="944,213,0,0" VerticalAlignment="Top" Width="242"/>
                         <!--<TextBlock Text="Привет" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="25,118,0,0" />-->
                     </Grid>
                 </TabItem>
