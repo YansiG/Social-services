@@ -53,7 +53,7 @@ namespace TalentedYouthProgect
                 row["сurator"] = result[0][5];
                 row["residentialAddress"] = result[0][6];
                 row["registrationAddress"] = result[0][7];
-                row["mobile"] = result[0][8];
+                row["mobile"] = result[0][9];
                 dt.Rows.Add(row);
             }
 
