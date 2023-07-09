@@ -77,8 +77,6 @@ namespace TalentedYouthProgect
 
         public void ResetComboBox()
         {
-            curatorBox.Items.Clear();
-            for (int i = 0; i < curators().Count; i++) { curatorBox.Items.Add(curators().ToArray()[i]); }
             groupBox.Items.Clear();
             for (int i = 0; i < Sgroup().Count; i++) { groupBox.Items.Add(Sgroup().ToArray()[i]); }
         }
@@ -354,7 +352,7 @@ namespace TalentedYouthProgect
 
         public void UpdateData()
         {
-            if (categories.Count == 0 && groupBox.SelectedValue == null && curatorBox.SelectedValue == null)
+            if (categories.Count == 0 && groupBox.SelectedValue == null)
             {
                 listViewStudent.Items.Clear();
                 string sqlExpression = "SELECT * FROM Students";
@@ -416,7 +414,7 @@ namespace TalentedYouthProgect
         public void UpdateWithParams()
         {
             IEnumerable<int> res;
-            if (categories.Count > 0 && groupBox.SelectedValue == null && curatorBox.SelectedValue == null)
+            if (categories.Count > 0 && groupBox.SelectedValue == null)
             {
                 listViewStudent.Items.Clear();
                 string cat = "";
@@ -437,7 +435,7 @@ namespace TalentedYouthProgect
 
                 }
             }
-            else if (categories.Count > 0 && groupBox.SelectedValue != null && curatorBox.SelectedValue != null)
+            else if (categories.Count > 0 && groupBox.SelectedValue != null)
             {
                 listViewStudent.Items.Clear();
                 string cat = "";
@@ -453,7 +451,7 @@ namespace TalentedYouthProgect
 
                     foreach (var item in result)
                     {
-                        if (item.Contains(groupBox.SelectedValue.ToString()) && item.Contains(curatorBox.SelectedValue.ToString()))
+                        if (item.Contains(groupBox.SelectedValue.ToString()))
                         {
                             listViewStudent.Items.Add(item.ToArray());
                         }
@@ -462,7 +460,7 @@ namespace TalentedYouthProgect
 
                 }
             }
-            else if (categories.Count == 0 && groupBox.SelectedValue != null && curatorBox.SelectedValue == null)
+            else if (categories.Count == 0 && groupBox.SelectedValue != null)
             {
                 listViewStudent.Items.Clear();
                 var items = DataBase.Search("Students", "StudentGroup", groupBox.SelectedValue.ToString());
@@ -471,52 +469,12 @@ namespace TalentedYouthProgect
                     listViewStudent.Items.Add(item.ToArray());
                 }
             }
-            else if (categories.Count == 0 && groupBox.SelectedValue == null && curatorBox.SelectedValue != null)
+            else if (categories.Count == 0 && groupBox.SelectedValue == null)
             {
-                listViewStudent.Items.Clear();
-                var items = DataBase.Search("Students", "сurator", curatorBox.SelectedValue.ToString());
-                foreach (var item in items)
-                {
-                    listViewStudent.Items.Add(item.ToArray());
-                }
+                ResetComboBox();
             }
-            else if (categories.Count == 0 && groupBox.SelectedValue != null && curatorBox.SelectedValue != null)
-            {
-                listViewStudent.Items.Clear();
-                var items = DataBase.Search("Students", "StudentGroup", groupBox.SelectedValue.ToString());
-                foreach (var item in items)
-                {
-                    if (item[5] == curatorBox.SelectedValue.ToString())
-                    {
-                        listViewStudent.Items.Add(item.ToArray());
-                    }
-                }
-            }
-            else if (categories.Count >= 0 && groupBox.SelectedValue == null && curatorBox.SelectedValue != null)
-            {
-                listViewStudent.Items.Clear();
-                string cat = "";
-                for (int i = 0; i < categories.Count; i++)
-                {
-                    if (i == categories.Count - 1) { cat += categories[i]; continue; }
-                    cat += categories[i] + " AND ";
-                }
-                res = DataBase.SearchNull("Hub", $"({cat})");
-                for (int i = 0; i < res.Count(); i++)
-                {
-                    var result = DataBase.Search("Students", "(ID)", res.ToArray()[i].ToString());
-
-                    foreach (var item in result)
-                    {
-                        if (item.Contains(curatorBox.SelectedValue.ToString()))
-                        {
-                            listViewStudent.Items.Add(item.ToArray());
-                        }
-
-                    }
-                }
-            }
-            else if (categories.Count >= 0 && groupBox.SelectedValue != null && curatorBox.SelectedValue == null)
+            //
+            else if (categories.Count >= 0 && groupBox.SelectedValue != null)
             {
                 listViewStudent.Items.Clear();
                 string cat = "";
@@ -558,7 +516,7 @@ namespace TalentedYouthProgect
                     {
                         try
                         {
-                            if (item.Contains(groupBox?.SelectedValue.ToString()) || item.Contains(curatorBox?.SelectedValue.ToString()))
+                            if (item.Contains(groupBox?.SelectedValue.ToString()))
                             {
                                 listViewStudent.Items.Add(item.ToArray());
                             }
@@ -566,7 +524,6 @@ namespace TalentedYouthProgect
                         catch
                         {
                             groupBox.SelectedValue = null;
-                            curatorBox.SelectedValue = null;
                             UpdateData();
                         }
 
