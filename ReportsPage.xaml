@@ -14,14 +14,10 @@
         <WindowsFormsHost Grid.ColumnSpan="2" Margin="0,0,148,0">
             <rv:ReportViewer x:Name="reportView"/>
         </WindowsFormsHost>
-        <Label Grid.Column="1" Margin="162,302,0,0" Content="C" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <!--<TextBox x:Name="YearFromReport" Grid.Column="1" Margin="204,368,0,0" Text="2019" HorizontalAlignment="Left" Width="35" Height="19" VerticalAlignment="Top"/>-->
-        <Label Grid.Column="1" Margin="157,331,0,0" Content="ПО" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <!--<TextBox x:Name="YearToReport" Grid.Column="1" Margin="0,368,10,0" Text="2023" Height="19" VerticalAlignment="Top" HorizontalAlignment="Right" Width="35"/>-->
-        <Button x:Name="buttonReport" Grid.Column="1" Content="Составить" HorizontalAlignment="Right" Margin="0,358,10,0" VerticalAlignment="Top" Width="128" Click="buttonReport_Click" Height="30"/>
-        <ComboBox x:Name="y1" Grid.Column="1" HorizontalAlignment="Right" Margin="0,304,10,0" VerticalAlignment="Top" Width="106"/>
-        <ComboBox x:Name="y2" Grid.Column="1" HorizontalAlignment="Right" Margin="0,331,10,0" VerticalAlignment="Top" Width="106"/>
-        <ComboBox x:Name="districtComboBox" Margin="162,275,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEditable="True" Width="128" Height="22" Grid.Column="1">
+        <Button x:Name="buttonReport" Grid.Column="1" Content="Составить" HorizontalAlignment="Right" Margin="0,95,10,0" VerticalAlignment="Top" Width="128" Click="buttonReport_Click" Height="30"/>
+        <ComboBox x:Name="districtComboBox" Margin="162,68,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEditable="True" Width="128" Height="22" Grid.Column="1">
             <ComboBox.Items>
                 <ComboBoxItem Content="Центральный район"/>
                 <ComboBoxItem Content="Советский район"/>
@@ -34,5 +30,8 @@
                 <ComboBoxItem Content="Фрунзенский район"/>
             </ComboBox.Items>
         </ComboBox>
+        <DatePicker x:Name="datePickerEnd" HorizontalAlignment="Left" Margin="162,39,0,0" VerticalAlignment="Top" Width="128" Grid.Column="1"/>
+        <DatePicker x:Name="datePickerStart" HorizontalAlignment="Left" Margin="162,10,0,0" VerticalAlignment="Top" Width="128" Grid.Column="1"/>
+
     </Grid>
 </Window>

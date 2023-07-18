@@ -247,30 +247,38 @@ namespace TalentedYouthProgect
                 }
             }
         }
-        public static List<int> findByids(int academicYear, int academicYear1)
-        {
-            DateTime start = new DateTime(academicYear, 9, 1);
-            DateTime end = new DateTime(academicYear1, 8, 31);
-            using (var connection = new SqliteConnection("Data Source=data.db"))
-            {
-                connection.Open();
-                List<int> res = new List<int>();
+        public static List<int> findByids(DateTime startDate, DateTime endDate, string areaFilter)
+{
+    using (var connection = new SqliteConnection("Data Source=data.db"))
+    {
+        connection.Open();
+        List<int> res = new List<int>();
 
-                SqliteCommand command = new SqliteCommand($"SELECT ID FROM Students WHERE admissionYear BETWEEN '{start.ToString("yyyy.MM.dd")}' AND '{end.ToString("yyyy.MM.dd")}'", connection);
-                using (SqliteDataReader reader = command.ExecuteReader())
+        // Измененный SQL-запрос с учетом фильтрации по полю "area" и точной дате
+        string query = $"SELECT ID FROM Students WHERE admissionYear BETWEEN '{startDate.ToString("yyyy.MM.dd")}' AND '{endDate.ToString("yyyy.MM.dd")}'";
+
+        // Добавляем условие фильтрации по полю "area", если оно задано
+        if (!string.IsNullOrEmpty(areaFilter))
+        {
+            query += $" AND area = '{areaFilter}'";
+        }
+
+        SqliteCommand command = new SqliteCommand(query, connection);
+        using (SqliteDataReader reader = command.ExecuteReader())
+        {
+            if (reader.HasRows)
+            {
+                while (reader.Read())
                 {
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            res.Add(reader.GetInt32(0));
-                        }
-                    }
+                    res.Add(reader.GetInt32(0));
                 }
-                command.Cancel(); command.Cancel();
-                return res;
             }
         }
+
+        return res;
+    }
+}
+
     }
 }
 

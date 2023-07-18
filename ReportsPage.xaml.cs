@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace TalentedYouthProgect
 {
@@ -15,9 +16,6 @@ namespace TalentedYouthProgect
         public ReportsPage()
         {
             InitializeComponent();
-            var yearsArr = Enumerable.Range(1995, DateTime.Now.Year-1994).Reverse();
-            y1.ItemsSource = yearsArr;
-            y2.ItemsSource = yearsArr;
         }
 
         private void buttonReport_Click(object sender, RoutedEventArgs e)
@@ -32,9 +30,12 @@ namespace TalentedYouthProgect
             dt.Columns.Add("registrationAddress");
             dt.Columns.Add("mobile");
             List<int> size;
+
+            DateTime startDate = datePickerStart.SelectedDate ?? DateTime.MinValue;
+            DateTime endDate = datePickerEnd.SelectedDate ?? DateTime.MaxValue;
             try
             {
-                size = DataBase.findByids(int.Parse(y1.SelectedValue.ToString()), int.Parse(y2.SelectedValue.ToString()));
+                size = DataBase.findByids(startDate, endDate, (districtComboBox.SelectedItem as ComboBoxItem)?.Content.ToString());
             }
             catch(System.Exception ex)
             {
@@ -62,7 +63,7 @@ namespace TalentedYouthProgect
             reportView.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dt));
 
             ReportParameterCollection reportParameters = new ReportParameterCollection();
-            reportParameters.Add(new ReportParameter("ReportHat", $"Отчет о студентах состоящих на учёте за {y1.SelectedValue.ToString()}-{y2.SelectedValue.ToString()} учебный год."));
+            reportParameters.Add(new ReportParameter("ReportHat", $"Отчет о студентах состоящих на учёте за {startDate.ToShortDateString()}-{endDate.ToShortDateString()} учебный год."));
             reportView.LocalReport.SetParameters(reportParameters);
 
             reportView.LocalReport.Refresh();
