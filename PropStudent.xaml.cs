@@ -235,7 +235,7 @@ namespace TalentedYouthProgect
 
             DataBase.Update("Students", "name", textBox1.Text, "ID", _studentID.ToString());
             DataBase.Update("Students", "birthday", dateTimePicker1.Text, "ID", _studentID.ToString());
-            DataBase.Update("Students", "admissionYear", dateTimePicker2.Text, "ID", _studentID.ToString());
+            DataBase.Update("Students", "admissionYear", dateTimePicker2.SelectedDate.Value.ToString("yyyy.MM.dd"), "ID", _studentID.ToString());
             DataBase.Update("Students", "studentGroup", groupBox.SelectedValue.ToString(), "ID", _studentID.ToString());
             DataBase.Update("Students", "сurator", comboBox1.SelectedValue.ToString(), "ID", _studentID.ToString());
             DataBase.Update("Students", "residentialAddress", textBox6.Text, "ID", _studentID.ToString());

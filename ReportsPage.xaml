@@ -16,7 +16,7 @@
         </WindowsFormsHost>
         <!--<TextBox x:Name="YearFromReport" Grid.Column="1" Margin="204,368,0,0" Text="2019" HorizontalAlignment="Left" Width="35" Height="19" VerticalAlignment="Top"/>-->
         <!--<TextBox x:Name="YearToReport" Grid.Column="1" Margin="0,368,10,0" Text="2023" Height="19" VerticalAlignment="Top" HorizontalAlignment="Right" Width="35"/>-->
-        <Button x:Name="buttonReport" Grid.Column="1" Content="Составить" HorizontalAlignment="Right" Margin="0,95,10,0" VerticalAlignment="Top" Width="128" Click="buttonReport_Click" Height="30"/>
+        <Button x:Name="buttonReport" Grid.Column="1" Content="Составить" HorizontalAlignment="Right" Margin="0,122,10,0" VerticalAlignment="Top" Width="128" Click="buttonReport_Click" Height="30"/>
         <ComboBox x:Name="districtComboBox" Margin="162,68,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEditable="True" Width="128" Height="22" Grid.Column="1">
             <ComboBox.Items>
                 <ComboBoxItem Content="Центральный район"/>
@@ -32,6 +32,14 @@
         </ComboBox>
         <DatePicker x:Name="datePickerEnd" HorizontalAlignment="Left" Margin="162,39,0,0" VerticalAlignment="Top" Width="128" Grid.Column="1"/>
         <DatePicker x:Name="datePickerStart" HorizontalAlignment="Left" Margin="162,10,0,0" VerticalAlignment="Top" Width="128" Grid.Column="1"/>
+        <ComboBox x:Name="sCategory" Margin="162,95,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsEditable="True" Width="128" Height="22" Grid.Column="1">
+            <ComboBoxItem Content="ИПР"/>
+            <ComboBoxItem Content="СОП"/>
+            <ComboBoxItem Content="Дети - сироты"/>
+            <ComboBoxItem Content="Дети - инвалиды"/>
+            <ComboBoxItem Content="Социальное расследование"/>
+            <ComboBoxItem Content="Инностранные граждане"/>
+        </ComboBox>
 
     </Grid>
 </Window>

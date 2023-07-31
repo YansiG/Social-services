@@ -145,7 +145,7 @@ namespace TalentedYouthProgect
                         {
                             for (int i = 0; i < 7; i++)
                             {
-                                if(reader.IsDBNull(i))
+                                if (reader.IsDBNull(i))
                                 {
                                     results.Add("NULL");
                                 }
@@ -248,36 +248,37 @@ namespace TalentedYouthProgect
             }
         }
         public static List<int> findByids(DateTime startDate, DateTime endDate, string areaFilter)
-{
-    using (var connection = new SqliteConnection("Data Source=data.db"))
-    {
-        connection.Open();
-        List<int> res = new List<int>();
-
-        // Измененный SQL-запрос с учетом фильтрации по полю "area" и точной дате
-        string query = $"SELECT ID FROM Students WHERE admissionYear BETWEEN '{startDate.ToString("yyyy.MM.dd")}' AND '{endDate.ToString("yyyy.MM.dd")}'";
-
-        // Добавляем условие фильтрации по полю "area", если оно задано
-        if (!string.IsNullOrEmpty(areaFilter))
         {
-            query += $" AND area = '{areaFilter}'";
-        }
-
-        SqliteCommand command = new SqliteCommand(query, connection);
-        using (SqliteDataReader reader = command.ExecuteReader())
-        {
-            if (reader.HasRows)
+            using (var connection = new SqliteConnection("Data Source=data.db"))
             {
-                while (reader.Read())
+                connection.Open();
+                List<int> res = new List<int>();
+
+                // Измененный SQL-запрос с учетом фильтрации по полю "area" и точной дате
+                string query = $"SELECT ID FROM Students WHERE admissionYear BETWEEN '{startDate.ToString("yyyy.MM.dd")}' AND '{endDate.ToString("yyyy.MM.dd")}'";
+
+                // Добавляем условие фильтрации по полю "area", если оно задано
+                if (!string.IsNullOrEmpty(areaFilter))
                 {
-                    res.Add(reader.GetInt32(0));
+                    query += $" AND area = '{areaFilter}'";
                 }
+
+
+                SqliteCommand command = new SqliteCommand(query, connection);
+                using (SqliteDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            res.Add(reader.GetInt32(0));
+                        }
+                    }
+                }
+
+                return res;
             }
         }
-
-        return res;
-    }
-}
 
     }
 }
