@@ -321,7 +321,7 @@ namespace TalentedYouthProgect
 
         private void ClickEdit_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
-            if(listViewStudent.SelectedItem == null)
+            if (listViewStudent.SelectedItem == null)
             {
                 return;
             }
@@ -448,16 +448,13 @@ namespace TalentedYouthProgect
                 for (int i = 0; i < res.Count(); i++)
                 {
                     var result = DataBase.Search("Students", "(ID)", res.ToArray()[i].ToString());
-
                     foreach (var item in result)
                     {
                         if (item.Contains(groupBox.SelectedValue.ToString()))
                         {
                             listViewStudent.Items.Add(item.ToArray());
                         }
-
                     }
-
                 }
             }
             else if (categories.Count == 0 && groupBox.SelectedValue != null)
@@ -472,31 +469,6 @@ namespace TalentedYouthProgect
             else if (categories.Count == 0 && groupBox.SelectedValue == null)
             {
                 ResetComboBox();
-            }
-            //
-            else if (categories.Count >= 0 && groupBox.SelectedValue != null)
-            {
-                listViewStudent.Items.Clear();
-                string cat = "";
-                for (int i = 0; i < categories.Count; i++)
-                {
-                    if (i == categories.Count - 1) { cat += categories[i]; continue; }
-                    cat += categories[i] + " AND ";
-                }
-                res = DataBase.SearchNull("Hub", $"({cat})");
-                for (int i = 0; i < res.Count(); i++)
-                {
-                    var result = DataBase.Search("Students", "(ID)", res.ToArray()[i].ToString());
-
-                    foreach (var item in result)
-                    {
-                        if (item.Contains(groupBox.SelectedValue.ToString()))
-                        {
-                            listViewStudent.Items.Add(item.ToArray());
-                        }
-
-                    }
-                }
             }
             else
             {
