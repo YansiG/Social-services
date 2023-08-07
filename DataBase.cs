@@ -212,7 +212,7 @@ namespace TalentedYouthProgect
                         {
                             List<string> results = new List<string>(); // Создание нового списка в каждой итерации
 
-                            for (int i = 0; i < 10; i++)
+                            for (int i = 0; i < 11; i++)
                             {
                                 results.Add(reader.GetString(i));
                             }

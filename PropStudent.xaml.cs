@@ -108,7 +108,7 @@ namespace TalentedYouthProgect
                 int Student_ID = Convert.ToInt32(DataBase.Read("SQLITE_SEQUENCE", "seq", "name", "Students")) + 1;
                 try
                 {
-                    DataBase.Write("Students", "name, birthday, admissionYear, studentGroup, сurator, residentialAddress, registrationAddress, area, mobile, Hub_ID", textBox1.Text, dateTimePicker1.Text, dateTimePicker2.SelectedDate.Value.ToString("yyyy.MM.dd"), groupBox.SelectedItem.ToString(), comboBox1.SelectedItem.ToString(), textBox6.Text, textBox7.Text, districtComboBox.Text, textBox8.Text, Student_ID.ToString());
+                    DataBase.Write("Students", "name, birthday, admissionYear, studentGroup, сurator, residentialAddress, registrationAddress, area, mobile, arch, Hub_ID", textBox1.Text, dateTimePicker1.Text, dateTimePicker2.SelectedDate.Value.ToString("yyyy.MM.dd"), groupBox.SelectedItem.ToString(), comboBox1.SelectedItem.ToString(), textBox6.Text, textBox7.Text, districtComboBox.Text, textBox8.Text, "0", Student_ID.ToString());
                 }
                 catch (Exception ex)
                 {
@@ -173,7 +173,7 @@ namespace TalentedYouthProgect
                         while (reader.Read())
                         {
                             result.Clear();
-                            for (int i = 0; i < 10; i++)
+                            for (int i = 0; i < 11; i++)
                             {
                                 result.Add(reader.GetString(i));
                             }

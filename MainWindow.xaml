@@ -11,7 +11,7 @@
             <Button x:Name="AddNewStudent" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="AddNewStudent_Click" Foreground="{x:Null}" BorderBrush="{x:Null}">
                 <Image Source="/image/addico.png" Stretch="Fill"/>
             </Button>
-            <Button x:Name="DeleteStudent" HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top" Height="30" Width="30" Foreground="{x:Null}" BorderBrush="{x:Null}">
+            <Button x:Name="DeleteStudent" HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top" Height="30" Width="30" Foreground="{x:Null}" BorderBrush="{x:Null}" Click="DeleteStudent_Click">
                 <Image Source="/image/deleteico.png"/>
             </Button>
             <Button x:Name="buttonEdit" HorizontalAlignment="Left" Margin="80,10,0,0" VerticalAlignment="Top" Height="30" Width="30" BorderBrush="Black" Foreground="{x:Null}" Click="ClickEdit_MouseLeftButtonDown">
@@ -96,6 +96,38 @@
                                     <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding [2]}" />
                                     <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding [3]}" />
 
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Архив">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="200" />
+                        </Grid.ColumnDefinitions>
+                        <ListView x:Name="listViewThirdTab" Grid.ColumnSpan="2">
+                            <ListView.Resources>
+
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontFamily" Value="Arial" />
+                                    <Setter Property="FontSize" Value="12" />
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Style>
+                            </ListView.Resources>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="id" Width="0" DisplayMemberBinding="{Binding [0]}" />
+                                    <GridViewColumn Header="ФИО" DisplayMemberBinding="{Binding [1]}" />
+                                    <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding [2]}" />
+                                    <GridViewColumn Header="Дата поступления" DisplayMemberBinding="{Binding [3]}" />
+                                    <GridViewColumn Header="Группа" DisplayMemberBinding="{Binding [4]}" />
+                                    <GridViewColumn Header="Куратор" DisplayMemberBinding="{Binding [5]}" />
+                                    <GridViewColumn Header="Адрес проживания" DisplayMemberBinding="{Binding [6]}" />
+                                    <GridViewColumn Header="Адрес регистрации" DisplayMemberBinding="{Binding [7]}" />
+                                    <GridViewColumn Header="Район" DisplayMemberBinding="{Binding [8]}" />
+                                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding [9]}" />
                                 </GridView>
                             </ListView.View>
                         </ListView>

@@ -355,6 +355,7 @@ namespace TalentedYouthProgect
             if (categories.Count == 0 && groupBox.SelectedValue == null)
             {
                 listViewStudent.Items.Clear();
+                listViewThirdTab.Items.Clear();
                 string sqlExpression = "SELECT * FROM Students";
                 List<string> result = new List<string>();
                 using (var connection = new SqliteConnection("Data Source=data.db"))
@@ -369,11 +370,22 @@ namespace TalentedYouthProgect
                             while (reader.Read())
                             {
                                 result.Clear();
-                                for (int i = 0; i < 10; i++)
+                                if(reader.GetInt32(10) != 1)
                                 {
-                                    result.Add(reader.GetString(i));
+                                    for (int i = 0; i < 10; i++)
+                                    {
+                                        result.Add(reader.GetString(i));
+                                    }
+                                    listViewStudent.Items.Add(result.ToArray());
                                 }
-                                listViewStudent.Items.Add(result.ToArray());
+                                else
+                                {
+                                    for (int i = 0; i < 10; i++)
+                                    {
+                                        result.Add(reader.GetString(i));
+                                    }
+                                    listViewThirdTab.Items.Add(result.ToArray());
+                                }
                             }
                         }
                     }
@@ -424,15 +436,18 @@ namespace TalentedYouthProgect
                     cat += categories[i] + " AND ";
                 }
                 res = DataBase.SearchNull("Hub", $"({cat})");
-                for (int i = 0; i < res.Count(); i++)
+                foreach (var studentId in res)
                 {
-                    var result = DataBase.Search("Students", "(ID)", res.ToArray()[i].ToString());
+                    var result = DataBase.Search("Students", "(ID)", studentId.ToString());
 
                     foreach (var item in result)
-                    {
-                        listViewStudent.Items.Add(item.ToArray());
+                    {  
+                        bool archValue = item[10] == "1"; // Assuming "arch" is in the 10th position in the result
+                        if (!archValue)
+                        {
+                            listViewStudent.Items.Add(item.ToArray());
+                        }
                     }
-
                 }
             }
             else if (categories.Count > 0 && groupBox.SelectedValue != null)
@@ -450,7 +465,8 @@ namespace TalentedYouthProgect
                     var result = DataBase.Search("Students", "(ID)", res.ToArray()[i].ToString());
                     foreach (var item in result)
                     {
-                        if (item.Contains(groupBox.SelectedValue.ToString()))
+                        bool archValue = item[10] == "1"; // Assuming "arch" is in the 10th position in the result
+                        if (!archValue && item.Contains(groupBox.SelectedValue.ToString()))
                         {
                             listViewStudent.Items.Add(item.ToArray());
                         }
@@ -463,7 +479,11 @@ namespace TalentedYouthProgect
                 var items = DataBase.Search("Students", "StudentGroup", groupBox.SelectedValue.ToString());
                 foreach (var item in items)
                 {
-                    listViewStudent.Items.Add(item.ToArray());
+                    bool archValue = item[10] == "1"; // Assuming "arch" is in the 10th position in the result
+                    if (!archValue)
+                    {
+                        listViewStudent.Items.Add(item.ToArray());
+                    }
                 }
             }
             else if (categories.Count == 0 && groupBox.SelectedValue == null)
@@ -488,7 +508,8 @@ namespace TalentedYouthProgect
                     {
                         try
                         {
-                            if (item.Contains(groupBox?.SelectedValue.ToString()))
+                            bool archValue = item[10] == "1"; // Assuming "arch" is in the 10th position in the result
+                            if (!archValue && item.Contains(groupBox?.SelectedValue.ToString()))
                             {
                                 listViewStudent.Items.Add(item.ToArray());
                             }
@@ -498,9 +519,7 @@ namespace TalentedYouthProgect
                             groupBox.SelectedValue = null;
                             UpdateData();
                         }
-
                     }
-
                 }
             }
         }
@@ -510,7 +529,36 @@ namespace TalentedYouthProgect
             PropStudent ps = new PropStudent(this);
             ps.Show();
         }
+        private void DeleteStudent_Click(object sender, RoutedEventArgs e)
+        {
+            if (listViewStudent.SelectedItems.Count > 0)
+            {
+                string key1 = "", key2 = "";
+                try
+                {
+                    key1 = (listViewStudent.SelectedItem as string[]).GetValue(1).ToString();
+                    key2 = (listViewStudent.SelectedItem as string[]).GetValue(2).ToString();
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
 
+                listViewStudent.Items.Remove(listViewStudent.SelectedItem as string[]);
+
+                SetId(Convert.ToInt32(DataBase.Read("SQLITE_SEQUENCE", "seq", "name", "Students")));
+
+                try
+                {
+                    DataBase.Update("Students", "arch", "1", "ID", DataBase.GetID("Students", "name", key1, "birthday", key2));
+                    //DataBase.Delete("Students", "", "ID", DataBase.GetID("Students", "name", key1, "birthday", key2));
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
         //    private void DeleteStudent_Click(object sender, RoutedEventArgs e)
         //    {
         //        //MessageBox.Show((listViewStudent.SelectedItem as string[]).GetValue(1).ToString());
