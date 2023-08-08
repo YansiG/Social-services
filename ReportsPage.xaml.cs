@@ -80,6 +80,10 @@ namespace TalentedYouthProgect
             {
                 var resultBD = DataBase.Search("Students", "ID", size[i].ToString());// DataBase.Read("Students", "*", "ID", size[i].ToString());
                 List<List<string>> result = resultBD.ToList();
+                if (result[0][10] == "1")
+                {
+                    continue;
+                }
                 DataRow row = dt.NewRow();
                 row["name2"] = result[0][1];
                 row["birthday"] = result[0][2];

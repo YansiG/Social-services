@@ -476,7 +476,7 @@ namespace TalentedYouthProgect
             else if (categories.Count == 0 && groupBox.SelectedValue != null)
             {
                 listViewStudent.Items.Clear();
-                var items = DataBase.Search("Students", "StudentGroup", groupBox.SelectedValue.ToString());
+                var items = DataBase.SearchOne("Students", "StudentGroup", groupBox.SelectedValue.ToString());
                 foreach (var item in items)
                 {
                     bool archValue = item[10] == "1"; // Assuming "arch" is in the 10th position in the result

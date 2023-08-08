@@ -223,7 +223,32 @@ namespace TalentedYouthProgect
                 }
             }
         }
+        public static IEnumerable<List<string>> SearchOne(string table, string where, string key)
+        {
+            using (var connection = new SqliteConnection("Data Source=data.db"))
+            {
+                connection.Open();
 
+                SqliteCommand command = new SqliteCommand($"SELECT * FROM {table} WHERE {where} = '{key}'", connection);
+                using (SqliteDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            List<string> results = new List<string>(); // Создание нового списка в каждой итерации
+
+                            for (int i = 0; i < 11; i++)
+                            {
+                                results.Add(reader.GetString(i));
+                            }
+
+                            yield return results;
+                        }
+                    }
+                }
+            }
+        }
         public static IEnumerable<int> SearchNull(string table, string where)
         {
             int results = 0;
